@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI-агент расчёта стоимости металлообработки для ООО Завод Энергон" />
+  <title>Energon AI | Расчёт стоимости</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-peach"></div>
+  <div class="ambient ambient-green"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Energon AI, на главную">
+      <span class="brand-mark">✦</span>
+      <span><strong>Energon AI</strong><small>интеллектуальный расчёт</small></span>
+    </a>
+    <div class="header-actions">
+      <span class="api-state"><i></i> demo mode</span>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Переключить тему" title="Переключить тему">☼</button>
+    </div>
+  </header>
+
+  <main id="top" class="shell">
+    <section class="hero">
+      <div class="eyebrow">ООО «Завод Энергон» <span>/</span> расчётная лаборатория</div>
+      <h1>Из чертежа —<br /><em>в точную цену.</em></h1>
+      <p>AI-агент извлечёт параметры детали, проверит исходные данные и подготовит коммерческое предложение на основе актуальных производственных коэффициентов.</p>
+    </section>
+
+    <section class="workspace-grid">
+      <div class="request-column">
+        <div class="section-heading"><span class="step-number">01</span><div><h2>Новая заявка</h2><p>Загрузите исходные данные для расчёта</p></div></div>
+        <form id="requestForm" class="request-form">
+          <label class="dropzone" id="dropzone" for="fileInput">
+            <input id="fileInput" type="file" accept=".pdf,.dks,.png,.jpg,.jpeg,.webp,.xlsx,.xls,.dxf,.cdw,.m3d" multiple />
+            <span class="upload-icon">↥</span>
+            <strong>Перетащите файлы сюда</strong>
+            <span>или <u>выберите на компьютере</u></span>
+            <small>PDF, DXF, CDW, M3D, PNG, JPG, XLSX · до 25 МБ</small>
+          </label>
+          <div id="fileList" class="file-list" aria-live="polite"></div>
+          <label class="field-label" for="requestText">Описание задачи <span>необязательно</span></label>
+          <textarea id="requestText" rows="4" placeholder="Например: лазерная резка стали 09Г2С, толщина 4 мм, партия 25 шт..."></textarea>
+          <div class="form-footer">
+            <p><span>✦</span> Можно отправить только чертёж — агент задаст уточняющие вопросы.</p>
+            <button class="primary-button" type="submit">Начать расчёт <span>↗</span></button>
+          </div>
+        </form>
+      </div>
+      <aside class="brief-card">
+        <div class="card-kicker">Агент проверит</div>
+        <ul class="check-list">
+          <li><span>01</span>Материал и марку</li>
+          <li><span>02</span>Толщину и габариты</li>
+          <li><span>03</span>Количество деталей</li>
+          <li><span>04</span>Операции обработки</li>
+          <li><span>05</span>Коэффициенты калькулятора</li>
+          <li><span>06</span>DXF / CDW / M3D / PDF / PNG контекст</li>
+        </ul>
+        <div class="output-note"><strong>На выходе</strong><span>Готовое КП в формате Excel<br />по шаблону заказчика.</span></div>
+      </aside>
+    </section>
+
+    <section class="chat-section" id="chatSection" aria-label="Диалог с агентом">
+      <div class="chat-heading"><div class="section-heading"><span class="step-number">02</span><div><h2>Диалог с агентом</h2><p>Уточните детали и подтвердите расчёт</p></div></div><span class="ready-status"><i></i>готов к работе</span></div>
+      <div class="chat-window" id="chatWindow">
+        <div class="empty-chat" id="emptyChat"><div class="empty-symbol">✦</div><strong>Здесь появится история расчёта</strong><span>Начните с файла или короткого описания изделия</span></div>
+      </div>
+      <form class="chat-composer" id="chatForm">
+        <button class="attach-button" id="chatAttach" type="button" title="Прикрепить файл" aria-label="Прикрепить файл">＋</button>
+        <input id="chatInput" type="text" placeholder="Напишите сообщение агенту..." autocomplete="off" />
+        <button class="send-button" type="submit" aria-label="Отправить сообщение">↑</button>
+      </form>
+    </section>
+
+    <footer><span>Energon AI</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
